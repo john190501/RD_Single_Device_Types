@@ -1,0 +1,27 @@
+version: 0.2
+runson: android
+concurrency: 1
+
+parallelism: 1
+autosplit: true
+
+matrix:
+  osVersion: ["11", "12", "13"]
+  os: ["android"]
+
+# testDiscovery:
+#   type: raw
+#   mode: dynamic
+#   command: grep 'test name' src/test/java/android-single.xml | awk '{print$2}' | sed 's/name=//g' | sed 's/\x3e//g'
+
+# testRunnerCommand: mvn test -Pandroid-single -DplatformVersion=${osVersion}
+
+appium: true
+framework:
+  name: maven/testng
+  defaultReports: false
+  discoveryType: xmltest
+  flags: ["-Pandroid-single","-DplatformVersion=${osVersion}"]
+
+
+jobLabel: ['RD Single Device Type']
